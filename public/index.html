@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CineSpot</title>
+  <title>CineSpot — Kraków cinemas</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
@@ -13,34 +14,45 @@
   <!-- Navbar -->
   <nav id="navbar">
     <div class="nav-left">
-      <a href="#" class="logo" id="logo-link">CineSpot</a>
+      <a href="#" class="logo" id="logo-link"><span class="logo-dot"></span>CineSpot</a>
     </div>
-    <span id="user-greeting" style="display:none;"></span>
-    <div class="nav-right">
+    <div class="nav-center">
       <button id="btn-home" class="nav-btn active">Movies</button>
       <button id="btn-cinemas" class="nav-btn">Cinemas</button>
       <button id="btn-screenings" class="nav-btn">Screenings</button>
       <button id="btn-favourites" class="nav-btn" style="display:none;">Favourites</button>
       <button id="btn-watchlist" class="nav-btn" style="display:none;">Watchlist</button>
       <button id="btn-admin" class="nav-btn" style="display:none;">Admin</button>
-      <button id="btn-logout" class="nav-btn" style="display:none;">Logout</button>
+    </div>
+    <div class="nav-right">
+      <span id="user-greeting" style="display:none;"></span>
+      <button id="btn-logout" class="nav-btn nav-btn-ghost" style="display:none;">Logout</button>
       <button id="btn-account" class="nav-btn nav-icon" title="Account">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/></svg>
       </button>
     </div>
   </nav>
 
   <!-- Browse movies -->
   <div id="page-home" class="page">
+    <header class="page-hero">
+      <h1>Now playing in <em>Kraków</em>.</h1>
+      <p class="page-hero-sub">Browse this week's films across six cinemas.</p>
+    </header>
+
     <div class="filter-bar">
       <div class="filter-row-top">
-        <input type="text" id="filter-title" placeholder="Search movies...">
+        <div class="search-input">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <input type="text" id="filter-title" placeholder="Search titles…">
+        </div>
+        <button id="btn-add-movie" class="btn btn-accent" style="display:none;">+ Add movie</button>
       </div>
       <div class="filter-row-bottom">
         <select id="filter-genre"><option value="">All genres</option></select>
-        <input type="text" id="filter-director" placeholder="Director...">
-        <input type="text" id="filter-actor" placeholder="Actor...">
         <select id="filter-cinema"><option value="">All cinemas</option></select>
+        <input type="text" id="filter-director" placeholder="Director">
+        <input type="text" id="filter-actor" placeholder="Actor">
         <input type="date" id="filter-screening-date" title="Screening date">
         <input type="date" id="filter-release-date" title="Release date">
         <select id="sort-by">
@@ -51,31 +63,39 @@
           <option value="director">Director</option>
         </select>
         <select id="sort-order">
-          <option value="desc">Desc</option>
-          <option value="asc">Asc</option>
+          <option value="desc">↓</option>
+          <option value="asc">↑</option>
         </select>
-        <button id="btn-search" class="btn">Search</button>
-        <button id="btn-clear" class="btn">Clear</button>
         <label class="toggle-all" title="Show all movies in the system, including ones with no upcoming screenings">
-          <input type="checkbox" id="filter-show-all"> Show all
+          <input type="checkbox" id="filter-show-all"> <span>Show all</span>
         </label>
-        <button id="btn-add-movie" class="btn btn-accent" style="display:none;">+ Add movie</button>
+        <span class="filter-spacer"></span>
+        <button id="btn-search" class="btn">Search</button>
+        <button id="btn-clear" class="btn btn-ghost">Clear</button>
       </div>
     </div>
-    <p id="now-playing-note" class="note">Showing movies playing in Kraków this week.</p>
+    <p id="now-playing-note" class="note">Showing films with screenings in the next 7 days.</p>
     <div id="movie-grid" class="movie-grid"></div>
   </div>
 
   <!-- Cinemas page -->
   <div id="page-cinemas" class="page" style="display:none;">
+    <header class="page-hero">
+      <h1>Cinemas in <em>Kraków</em>.</h1>
+      <p class="page-hero-sub">Six venues — from multiplexes to art-house back rooms.</p>
+    </header>
     <div class="filter-bar">
       <div class="filter-row-top">
-        <input type="text" id="cinema-filter-name" placeholder="Search cinemas...">
+        <div class="search-input">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <input type="text" id="cinema-filter-name" placeholder="Search cinemas…">
+        </div>
       </div>
       <div class="filter-row-bottom">
-        <input type="text" id="cinema-filter-city" placeholder="City...">
+        <input type="text" id="cinema-filter-city" placeholder="City">
+        <span class="filter-spacer"></span>
         <button id="btn-cinema-search" class="btn">Search</button>
-        <button id="btn-cinema-clear" class="btn">Clear</button>
+        <button id="btn-cinema-clear" class="btn btn-ghost">Clear</button>
       </div>
     </div>
     <div id="cinema-list" class="cinema-list"></div>
@@ -83,12 +103,17 @@
 
   <!-- Screenings page -->
   <div id="page-screenings" class="page" style="display:none;">
+    <header class="page-hero">
+      <h1>Screenings.</h1>
+      <p class="page-hero-sub">Every showtime, by cinema and date.</p>
+    </header>
     <div class="filter-bar">
       <div class="filter-row-bottom">
         <select id="screenings-filter-cinema"><option value="">All cinemas</option></select>
         <input type="date" id="screenings-filter-date">
+        <span class="filter-spacer"></span>
         <button id="btn-screenings-search" class="btn">Search</button>
-        <button id="btn-screenings-clear" class="btn">Clear</button>
+        <button id="btn-screenings-clear" class="btn btn-ghost">Clear</button>
       </div>
     </div>
     <div id="screenings-list" class="screenings-list"></div>
@@ -96,7 +121,10 @@
 
   <!-- Favourites page -->
   <div id="page-favourites" class="page" style="display:none;">
-    <h2>My Favourites</h2>
+    <header class="page-hero">
+      <h1>My favourites.</h1>
+      <p class="page-hero-sub">Films, actors and cinemas you love.</p>
+    </header>
     <div class="fav-tabs">
       <button class="fav-tab active" data-tab="fav-movies">Movies</button>
       <button class="fav-tab" data-tab="fav-actors">Actors</button>
@@ -104,35 +132,41 @@
     </div>
     <div id="fav-movies" class="fav-panel">
       <div id="fav-grid" class="movie-grid"></div>
-      <p id="fav-empty" style="display:none;">No favourite movies yet.</p>
+      <p id="fav-empty" class="empty-note" style="display:none;">No favourite movies yet.</p>
     </div>
     <div id="fav-actors" class="fav-panel" style="display:none;">
       <form id="form-add-actor" class="inline-form">
-        <input type="text" name="actor_name" placeholder="Add favourite actor (exact name)..." required>
+        <input type="text" name="actor_name" placeholder="Add favourite actor (exact name)…" required>
         <button type="submit" class="btn">Add</button>
       </form>
       <ul id="fav-actors-list" class="chip-list"></ul>
-      <h3>Movies with your favourite actors</h3>
+      <h3 class="section-title">Movies with your favourite actors</h3>
       <div id="fav-actors-movies" class="movie-grid"></div>
     </div>
     <div id="fav-cinemas" class="fav-panel" style="display:none;">
       <div id="fav-cinemas-list" class="cinema-list"></div>
-      <p id="fav-cinemas-empty" style="display:none;">No favourite cinemas yet. Go to the Cinemas page and click the heart!</p>
-      <h3>Upcoming screenings at your favourite cinemas</h3>
+      <p id="fav-cinemas-empty" class="empty-note" style="display:none;">No favourite cinemas yet. Click the heart on a cinema card.</p>
+      <h3 class="section-title">Upcoming screenings at your favourite cinemas</h3>
       <div id="fav-cinemas-screenings" class="screenings-list"></div>
     </div>
   </div>
 
   <!-- Watchlist page -->
   <div id="page-watchlist" class="page" style="display:none;">
-    <h2>My Watchlist</h2>
+    <header class="page-hero">
+      <h1>My watchlist.</h1>
+      <p class="page-hero-sub">Films you want to see.</p>
+    </header>
     <div id="watch-grid" class="movie-grid"></div>
-    <p id="watch-empty" style="display:none;">Your watchlist is empty. Add movies you want to watch!</p>
+    <p id="watch-empty" class="empty-note" style="display:none;">Your watchlist is empty. Add movies you want to watch!</p>
   </div>
 
   <!-- Admin page -->
   <div id="page-admin" class="page" style="display:none;">
-    <h2>Admin Panel</h2>
+    <header class="page-hero">
+      <h1>Admin.</h1>
+      <p class="page-hero-sub">Users, movies, cinemas, screenings.</p>
+    </header>
     <div class="admin-tabs">
       <button class="admin-tab active" data-tab="tab-users">Users</button>
       <button class="admin-tab" data-tab="tab-movies">Movies</button>
@@ -156,7 +190,7 @@
       </table>
     </div>
     <div id="tab-cinemas" class="tab-content" style="display:none;">
-      <button id="btn-add-cinema" class="btn btn-accent">+ Add cinema</button>
+      <div class="table-toolbar"><button id="btn-add-cinema" class="btn btn-accent">+ Add cinema</button></div>
       <table id="admin-cinemas-table">
         <thead>
           <tr><th>ID</th><th>Name</th><th>Address</th><th>City</th><th>Actions</th></tr>
@@ -165,7 +199,7 @@
       </table>
     </div>
     <div id="tab-screenings" class="tab-content" style="display:none;">
-      <button id="btn-add-screening" class="btn btn-accent">+ Add screening</button>
+      <div class="table-toolbar"><button id="btn-add-screening" class="btn btn-accent">+ Add screening</button></div>
       <table id="admin-screenings-table">
         <thead>
           <tr><th>ID</th><th>Movie</th><th>Cinema</th><th>Time</th><th>Hall</th><th>Actions</th></tr>
@@ -187,7 +221,7 @@
         <form id="form-login">
           <input type="text" name="username" placeholder="Username" required>
           <input type="password" name="password" placeholder="Password" required>
-          <button type="submit" class="btn">Login</button>
+          <button type="submit" class="btn btn-accent btn-block">Login</button>
         </form>
         <p id="login-error" class="error-msg"></p>
       </div>
@@ -196,7 +230,7 @@
           <input type="text" name="username" placeholder="Username" required>
           <input type="email" name="email" placeholder="Email" required>
           <input type="password" name="password" placeholder="Password (min 6 chars)" required>
-          <button type="submit" class="btn">Register</button>
+          <button type="submit" class="btn btn-accent btn-block">Register</button>
         </form>
         <p id="register-error" class="error-msg"></p>
       </div>
@@ -219,7 +253,7 @@
         <input type="text" name="actors" placeholder="Actors (comma separated)">
         <textarea name="description" placeholder="Description" rows="3"></textarea>
         <input type="text" name="poster_url" placeholder="Poster URL">
-        <button type="submit" class="btn">Save</button>
+        <button type="submit" class="btn btn-accent btn-block">Save</button>
       </form>
       <p id="movie-error" class="error-msg"></p>
     </div>
@@ -235,7 +269,7 @@
         <input type="text" name="name" placeholder="Name" required>
         <input type="text" name="address" placeholder="Address">
         <input type="text" name="city" placeholder="City" value="Kraków">
-        <button type="submit" class="btn">Save</button>
+        <button type="submit" class="btn btn-accent btn-block">Save</button>
       </form>
       <p id="cinema-error" class="error-msg"></p>
     </div>
@@ -254,11 +288,11 @@
         <label class="form-label">Cinema
           <select name="cinema_id" required></select>
         </label>
-        <label class="form-label">Date & time
+        <label class="form-label">Date &amp; time
           <input type="datetime-local" name="screening_time" required>
         </label>
         <input type="text" name="hall" placeholder="Hall (optional)">
-        <button type="submit" class="btn">Save</button>
+        <button type="submit" class="btn btn-accent btn-block">Save</button>
       </form>
       <p id="screening-error" class="error-msg"></p>
     </div>

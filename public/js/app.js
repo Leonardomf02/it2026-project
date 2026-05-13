@@ -296,6 +296,7 @@ $(function () {
         posterHtml +
         '<div class="detail-info">' +
           '<h2>' + escapeHtml(m.title) + '</h2>' +
+          ratingHtml +
           '<p><strong>Release date:</strong> ' + (m.release_date || 'N/A') + '</p>' +
           '<p><strong>Genre:</strong> ' + escapeHtml(m.genre || 'N/A') + '</p>' +
           '<p><strong>Director:</strong> ' + escapeHtml(m.director || 'N/A') + '</p>' +
@@ -303,7 +304,6 @@ $(function () {
           '<p><strong>Description:</strong> ' + escapeHtml(m.description || 'No description.') + '</p>' +
           '<h3>Upcoming screenings</h3>' +
           '<div class="movie-screenings">Loading...</div>' +
-          ratingHtml +
         '</div>'
       );
 
