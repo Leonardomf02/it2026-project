@@ -1,0 +1,11 @@
+node_modules/
+.DS_Store
+movies.db
+movies.db-shm
+movies.db-wal
+*.log
+.env
+
+# professor's files — not for public repo
+IT2026-Project1.pdf
+IT2026-Projects.xlsx
