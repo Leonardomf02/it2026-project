@@ -92,4 +92,22 @@ if (!admin) {
   ).run(hash);
 }
 
+// keep screenings always "now playing": if every screening is in the past,
+// shift them all forward so the earliest one falls on today.
+var future = db.prepare("SELECT COUNT(*) as n FROM screenings WHERE screening_time >= datetime('now')").get().n;
+if (future === 0) {
+  var first = db.prepare("SELECT MIN(date(screening_time)) as d FROM screenings").get().d;
+  if (first) {
+    var firstDate = new Date(first + 'T00:00:00');
+    var today = new Date();
+    today.setHours(0, 0, 0, 0);
+    var diffDays = Math.round((today - firstDate) / 86400000);
+    if (diffDays > 0) {
+      db.prepare("UPDATE screenings SET screening_time = datetime(screening_time, ?)")
+        .run('+' + diffDays + ' days');
+      console.log('Shifted screenings forward by ' + diffDays + ' days.');
+    }
+  }
+}
+
 module.exports = db;
