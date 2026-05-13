@@ -8,7 +8,7 @@ var movies = [
     director: 'David Frankel',
     actors: 'Meryl Streep, Anne Hathaway, Emily Blunt, Stanley Tucci',
     description: 'Długo wyczekiwana kontynuacja kultowej komedii o świecie mody.',
-    poster_url: null
+    poster_url: 'https://upload.wikimedia.org/wikipedia/en/9/97/The_Devil_Wears_Prada_2_%28film_poster%29.png'
   },
   {
     title: 'Michael',
@@ -17,7 +17,7 @@ var movies = [
     director: 'Antoine Fuqua',
     actors: 'Jaafar Jackson, Colman Domingo, Nia Long',
     description: 'Biograficzna opowieść o życiu Michaela Jacksona, króla popu.',
-    poster_url: null
+    poster_url: 'https://upload.wikimedia.org/wikipedia/en/3/37/Michael_%282026_film_poster%29.png'
   },
   {
     title: 'Hamnet',
@@ -26,7 +26,7 @@ var movies = [
     director: 'Chloé Zhao',
     actors: 'Paul Mescal, Jessie Buckley',
     description: 'Anglia, 1580. Historia tragedii, która zainspirowała Williama Szekspira do napisania Hamleta.',
-    poster_url: null
+    poster_url: 'https://upload.wikimedia.org/wikipedia/en/1/1f/Hamnet_film_poster.jpeg'
   },
   {
     title: 'Wartość sentymentalna',
@@ -35,7 +35,7 @@ var movies = [
     director: 'Joachim Trier',
     actors: 'Renate Reinsve, Stellan Skarsgård, Elle Fanning',
     description: 'Dwie siostry, reżyser-ojciec i hollywoodzka gwiazda. Laureat Grand Prix w Cannes.',
-    poster_url: null
+    poster_url: 'https://upload.wikimedia.org/wikipedia/en/5/5c/Sentimental_Value_2025.jpeg'
   },
   {
     title: 'Erupcja',
@@ -44,7 +44,7 @@ var movies = [
     director: 'Peter Ohsa',
     actors: 'Charli XCX, Lena Góra',
     description: 'Pokaz w ramach festiwalu Mastercard OFF CAMERA.',
-    poster_url: null
+    poster_url: 'https://upload.wikimedia.org/wikipedia/en/1/1f/Erupcja_2025.jpeg'
   },
   {
     title: 'Normal',
@@ -53,7 +53,7 @@ var movies = [
     director: 'Adele Tulli',
     actors: 'Nieznani',
     description: 'Dokumentalna obserwacja codziennych rytuałów płci. Premiera 24 kwietnia.',
-    poster_url: null
+    poster_url: 'https://image.tmdb.org/t/p/w500/8kUrEqzs9CjIHr1kBsvWplT6xQt.jpg'
   },
   {
     title: 'Billie Eilish — Hit Me Hard and Soft: The Tour',
@@ -62,7 +62,7 @@ var movies = [
     director: 'James Cameron, Billie Eilish',
     actors: 'Billie Eilish, Finneas O\'Connell',
     description: 'Koncertowy film z trasy w formacie 2D i 3D.',
-    poster_url: null
+    poster_url: 'https://upload.wikimedia.org/wikipedia/en/7/79/Hit_Me_Hard_and_Soft_the_Tour.png'
   },
   {
     title: 'Bez wyjścia',
@@ -71,7 +71,7 @@ var movies = [
     director: 'Daniel Jaroszek',
     actors: 'Maciej Musiał, Magdalena Cielecka',
     description: 'Polski thriller o desperackiej ucieczce przed przeszłością.',
-    poster_url: null
+    poster_url: 'https://fwcdn.pl/fpo/87/16/10058716/8227585.10.webp'
   },
   {
     title: 'Wpatrując się w słońce',
@@ -80,7 +80,7 @@ var movies = [
     director: 'Mascha Schilinski',
     actors: 'Hanna Heckt, Lea Drinda',
     description: 'Wielopokoleniowa saga rodzinna o tajemnicach starego gospodarstwa.',
-    poster_url: null
+    poster_url: 'https://upload.wikimedia.org/wikipedia/en/2/23/In_die_Sonne_schauen_poster.webp'
   },
   {
     title: 'Pianista',
@@ -89,7 +89,7 @@ var movies = [
     director: 'Roman Polański',
     actors: 'Adrien Brody, Thomas Kretschmann, Frank Finlay',
     description: 'Złota Palma w Cannes i trzy Oscary. Historia Władysława Szpilmana w czasie II wojny światowej.',
-    poster_url: null
+    poster_url: 'https://upload.wikimedia.org/wikipedia/en/a/a6/The_Pianist_movie.jpg'
   },
   {
     title: 'Niewinni czarodzieje',
@@ -98,7 +98,7 @@ var movies = [
     director: 'Andrzej Wajda',
     actors: 'Tadeusz Łomnicki, Krystyna Stypułkowska, Zbigniew Cybulski',
     description: 'Klasyk polskiego kina w cyklu "WAJDA: re-wizje" w Kinie Kijów.',
-    poster_url: null
+    poster_url: 'https://upload.wikimedia.org/wikipedia/commons/f/f3/Niewinni_czerodzieje_-_Poster.jpg'
   },
   {
     title: 'Top Gun',
@@ -107,7 +107,7 @@ var movies = [
     director: 'Tony Scott',
     actors: 'Tom Cruise, Kelly McGillis, Val Kilmer',
     description: 'Kultowa historia pilotów marynarki wojennej. Pokazy specjalne z okazji Top Gun Day.',
-    poster_url: null
+    poster_url: 'https://upload.wikimedia.org/wikipedia/en/4/46/Top_Gun_Movie.jpg'
   },
   {
     title: 'Żywot Briana',
@@ -116,7 +116,7 @@ var movies = [
     director: 'Terry Jones',
     actors: 'Graham Chapman, John Cleese, Michael Palin, Eric Idle',
     description: 'Klasyk Monty Pythona w specjalnym pokazie z prelekcją.',
-    poster_url: null
+    poster_url: 'https://upload.wikimedia.org/wikipedia/en/1/18/Lifeofbrianfilmposter.jpg'
   },
   {
     title: 'Paterson',
@@ -125,7 +125,7 @@ var movies = [
     director: 'Jim Jarmusch',
     actors: 'Adam Driver, Golshifteh Farahani',
     description: 'Poetycki portret kierowcy autobusu z New Jersey. Cykl KINOVERSUM — obraz, który mówi wierszem.',
-    poster_url: null
+    poster_url: 'https://upload.wikimedia.org/wikipedia/en/b/b0/Paterson_%28film%29.png'
   },
   {
     title: 'Ból i blask',
@@ -134,7 +134,7 @@ var movies = [
     director: 'Pedro Almodóvar',
     actors: 'Antonio Banderas, Penélope Cruz, Asier Etxeandia',
     description: 'Sentymentalna autobiografia reżysera. Pokaz w Dyskusyjnym Klubie Filmowym.',
-    poster_url: null
+    poster_url: 'https://upload.wikimedia.org/wikipedia/en/e/ee/DolorYGloriaPoster.jpg'
   }
 ];
 
