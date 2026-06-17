@@ -56,7 +56,7 @@ var movies = [
     poster_url: 'https://image.tmdb.org/t/p/w500/8kUrEqzs9CjIHr1kBsvWplT6xQt.jpg'
   },
   {
-    title: 'Billie Eilish — Hit Me Hard and Soft: The Tour',
+    title: 'Billie Eilish: Hit Me Hard and Soft: The Tour',
     release_date: '2026-05-08',
     genre: 'Music',
     director: 'James Cameron, Billie Eilish',
@@ -124,7 +124,7 @@ var movies = [
     genre: 'Drama',
     director: 'Jim Jarmusch',
     actors: 'Adam Driver, Golshifteh Farahani',
-    description: 'Poetycki portret kierowcy autobusu z New Jersey. Cykl KINOVERSUM — obraz, który mówi wierszem.',
+    description: 'Poetycki portret kierowcy autobusu z New Jersey. Cykl KINOVERSUM - obraz, który mówi wierszem.',
     poster_url: 'https://upload.wikimedia.org/wikipedia/en/b/b0/Paterson_%28film%29.png'
   },
   {
@@ -151,21 +151,21 @@ var cinemas = [
 
 // Which cinemas each film plays in (by cinema index 0-5)
 var moviePrograms = [
-  [0, 2, 3, 4],   // Diabeł ubiera się u Prady 2  — wide release
-  [0, 3, 4],      // Michael — wide release
-  [0, 1],         // Hamnet — art-house
-  [0, 1, 2],      // Wartość sentymentalna — art-house + Kijów
-  [0],            // Erupcja — festival screening
-  [2, 5],         // Normal — premiere at Kijów + Paradox
-  [0, 3, 4],      // Billie Eilish concert — wide
-  [3, 4],         // Bez wyjścia — multiplex
-  [1],            // Wpatrując się w słońce — Kino Mikro
-  [0],            // Pianista (re-play) — Pod Baranami cycle
-  [2],            // Niewinni czarodzieje — Kijów (Wajda cycle)
-  [2],            // Top Gun — Kijów (Top Gun Day)
-  [2],            // Żywot Briana — Kijów special
-  [5],            // Paterson — Paradox (KINOVERSUM)
-  [5]             // Ból i blask — Paradox (DKF)
+  [0, 2, 3, 4],   // Diabeł ubiera się u Prady 2  - wide release
+  [0, 3, 4],      // Michael - wide release
+  [0, 1],         // Hamnet - art-house
+  [0, 1, 2],      // Wartość sentymentalna - art-house + Kijów
+  [0],            // Erupcja - festival screening
+  [2, 5],         // Normal - premiere at Kijów + Paradox
+  [0, 3, 4],      // Billie Eilish concert - wide
+  [3, 4],         // Bez wyjścia - multiplex
+  [1],            // Wpatrując się w słońce - Kino Mikro
+  [0],            // Pianista (re-play) - Pod Baranami cycle
+  [2],            // Niewinni czarodzieje - Kijów (Wajda cycle)
+  [2],            // Top Gun - Kijów (Top Gun Day)
+  [2],            // Żywot Briana - Kijów special
+  [5],            // Paterson - Paradox (KINOVERSUM)
+  [5]             // Ból i blask - Paradox (DKF)
 ];
 
 var count = db.prepare('SELECT COUNT(*) as n FROM movies').get().n;
@@ -197,22 +197,24 @@ var seed = db.transaction(() => {
     cinemaIds.push(Number(ci.lastInsertRowid));
   }
 
-  // Generate screenings for the next 7 days, using the moviePrograms matrix.
-  // For each (movie, cinema-it-plays-at) pair, schedule 2-4 slots across the week.
+  // Generate screenings for one week, using the moviePrograms matrix.
+  // For each (movie, cinema-it-plays-at) pair, schedule a few slots across the week.
   var timeSlots = ['12:30', '15:00', '17:30', '19:00', '20:30', '22:00'];
   var halls = ['Sala 1', 'Sala 2', 'Sala Duża', 'Sala Kameralna'];
-  var today = new Date();
-  today.setHours(0, 0, 0, 0);
+  // base date for the screenings (one week: 16-22 June 2026)
+  var base = new Date('2026-06-16T00:00:00');
 
   var screeningCount = 0;
   for (var i = 0; i < movieIds.length; i++) {
     var cinemasForMovie = moviePrograms[i];
     cinemasForMovie.forEach(function (ci) {
-      // 3 screenings per (movie, cinema) across the next 7 days
+      // 3 screenings per (movie, cinema) across that week
       for (var k = 0; k < 3; k++) {
-        var day = new Date(today);
-        day.setDate(today.getDate() + ((i + k * 2 + ci) % 7));
-        var iso = day.toISOString().slice(0, 10);
+        var day = new Date(base);
+        day.setDate(base.getDate() + ((i + k * 2 + ci) % 7));
+        var iso = day.getFullYear() + '-' +
+                  String(day.getMonth() + 1).padStart(2, '0') + '-' +
+                  String(day.getDate()).padStart(2, '0');
         var time = timeSlots[(i + ci + k) % timeSlots.length];
         var hall = halls[(i + ci) % halls.length];
         insertScreening.run(movieIds[i], cinemaIds[ci], iso + ' ' + time, hall);
@@ -221,7 +223,7 @@ var seed = db.transaction(() => {
     });
   }
 
-  console.log('Seeded ' + movies.length + ' movies, ' + cinemas.length + ' cinemas, ' + screeningCount + ' screenings for the next 7 days.');
+  console.log('Seeded ' + movies.length + ' movies, ' + cinemas.length + ' cinemas, ' + screeningCount + ' screenings for the week of 16 June 2026.');
 });
 
 seed();

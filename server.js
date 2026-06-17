@@ -26,12 +26,12 @@ app.use('/api/watchlist', require('./routes/watchlist'));
 app.use('/api/ratings', require('./routes/ratings'));
 app.use('/api/admin', require('./routes/admin'));
 
-// SPA fallback — send index.html for any non-API request
+// SPA fallback - send index.html for any non-API request
 app.use((req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-var PORT = process.env.PORT || 3000;
+var PORT = process.env.PORT || 3003;
 app.listen(PORT, () => {
   console.log('Server running on http://localhost:' + PORT);
 });

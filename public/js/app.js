@@ -312,7 +312,7 @@ $(function () {
         if (!list.length) { box.text('No upcoming screenings.'); return; }
         box.html(list.map(function (s) {
           return '<div class="screening-row">' +
-            '<strong>' + formatScreening(s.screening_time) + '</strong> — ' +
+            '<strong>' + formatScreening(s.screening_time) + '</strong> - ' +
             escapeHtml(s.cinema_name) + (s.cinema_city ? ' (' + escapeHtml(s.cinema_city) + ')' : '') +
             (s.hall ? ' · ' + escapeHtml(s.hall) : '') +
             '</div>';
@@ -430,7 +430,7 @@ $(function () {
     });
   }
 
-  // search / filter — movies page
+  // search / filter - movies page
   $('#btn-search').on('click', fetchMovies);
   $('#btn-clear').on('click', function () {
     $('#filter-title, #filter-director, #filter-actor, #filter-screening-date, #filter-release-date').val('');
@@ -482,7 +482,7 @@ $(function () {
     });
   }
 
-  // ---- Cinemas page ----
+  // cinemas page
   function fetchCinemas() {
     var params = {};
     var name = $('#cinema-filter-name').val();
@@ -551,7 +551,7 @@ $(function () {
     fetchScreenings();
   });
 
-  // ---- Screenings page ----
+  // screenings page
   function fetchScreenings() {
     var params = {};
     var cinemaId = $('#screenings-filter-cinema').val();
@@ -586,7 +586,7 @@ $(function () {
   });
   $('#screenings-filter-cinema, #screenings-filter-date').on('change', fetchScreenings);
 
-  // ---- Favourites page ----
+  // favourites page
   function loadFavouritesPage() {
     $('.fav-tab').removeClass('active').first().addClass('active');
     $('.fav-panel').hide();
@@ -677,7 +677,7 @@ $(function () {
     });
   }
 
-  // ---- Watchlist ----
+  // watchlist
   function fetchWatchlist() {
     $.get('/api/watchlist').done(function (movies) {
       if (movies.length === 0) {
@@ -690,7 +690,7 @@ $(function () {
     });
   }
 
-  // ---- Admin: users ----
+  // admin: users
   function fetchUsers() {
     $.get('/api/admin/users').done(function (users) {
       var tbody = $('#users-table tbody').empty();
@@ -745,7 +745,7 @@ $(function () {
     });
   });
 
-  // ---- Admin: movies ----
+  // admin: movies
   function fetchAdminMovies() {
     $.get('/api/movies').done(function (movies) {
       var tbody = $('#admin-movies-table tbody').empty();
@@ -840,7 +840,7 @@ $(function () {
     });
   });
 
-  // ---- Admin: cinemas ----
+  // admin: cinemas
   function fetchAdminCinemas() {
     $.get('/api/cinemas').done(function (cinemas) {
       var tbody = $('#admin-cinemas-table tbody').empty();
@@ -916,7 +916,7 @@ $(function () {
     });
   });
 
-  // ---- Admin: screenings ----
+  // admin: screenings
   function fetchAdminScreenings() {
     $.get('/api/screenings').done(function (list) {
       var tbody = $('#admin-screenings-table tbody').empty();

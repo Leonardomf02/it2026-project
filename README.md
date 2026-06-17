@@ -2,7 +2,7 @@
 
 Movie database for cinemas in Kraków. Browse what's showing, filter by cinema/date/genre/director/actor, rate films, build a watchlist and favourites. Admin side handles CRUD for movies, cinemas, screenings, plus user management (block, delete, change role).
 
-Uni project for Internet Technologies (Kraków, 2026) — Team G.
+Uni project for Internet Technologies (Kraków, 2026), Team G.
 
 ## Stack
 
@@ -19,11 +19,11 @@ Needs Node 18+.
 git clone https://github.com/Leonardomf02/it2026-project.git
 cd it2026-project
 npm install
-npm run seed     # first time only — fills the db with movies, cinemas, screenings
+npm run seed     # first time only - fills the db with movies, cinemas, screenings
 npm start
 ```
 
-Open http://localhost:3000.
+Open http://localhost:3003.
 
 ## Default admin
 
@@ -46,14 +46,14 @@ routes/                api endpoints
   screenings.js        list + filter by movie/cinema/date + CRUD (admin)
   favourites.js        favourite movies, actors, cinemas
   watchlist.js         per-user watchlist
-  ratings.js           1–10 ratings per user/movie
+  ratings.js           0-10 ratings per user/movie
   admin.js             user management (block, delete, change role)
 middleware/auth.js     session + admin guards
 public/                frontend
   index.html
   css/style.css
-  js/app.js            SPA-ish, talks to the api via fetch
-seed.js                populates db with 15 movies, 6 Kraków cinemas and screenings for the next 7 days
+  js/app.js            SPA-ish, talks to the api via jQuery AJAX
+seed.js                populates db with 15 movies, 6 Kraków cinemas and a week of screenings (16-22 June 2026)
 ```
 
 ## Database
@@ -66,10 +66,5 @@ npm start        # recreates the schema + admin user
 npm run seed     # repopulate
 ```
 
-The seed script is idempotent — it skips seeding if movies already exist.
+The seed script is idempotent: it skips seeding if movies already exist.
 
-## Notes
-
-- Port defaults to 3000. Override: `PORT=4000 npm start`.
-- Sessions are stored in memory, so they reset on server restart.
-- The `WAL` files (`movies.db-shm`, `movies.db-wal`) are SQLite's write-ahead log — safe to delete when the server is stopped.

@@ -6,8 +6,8 @@ var router = express.Router();
 
 router.use(requireLogin);
 
-// ---- Favourite actors ----
-// (defined before :movieId routes so they take precedence)
+// favourite actors
+// (defined before the :movieId routes so they take precedence)
 
 // GET /api/favourites/actors
 router.get('/actors', (req, res) => {
@@ -53,7 +53,7 @@ router.delete('/actors', (req, res) => {
   res.json({ message: 'Actor removed.' });
 });
 
-// ---- Favourite cinemas ----
+// favourite cinemas
 
 // GET /api/favourites/cinemas
 router.get('/cinemas', (req, res) => {
@@ -100,7 +100,7 @@ router.delete('/cinemas/:id', (req, res) => {
   res.json({ message: 'Cinema removed.' });
 });
 
-// ---- Favourite movies ----
+// favourite movies
 
 // GET /api/favourites
 router.get('/', (req, res) => {
