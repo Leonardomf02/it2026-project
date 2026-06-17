@@ -5,3 +5,4 @@ movies.db-shm
 movies.db-wal
 *.log
 .env
+trash/
